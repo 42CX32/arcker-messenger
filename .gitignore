@@ -60,3 +60,8 @@ server/backups/
 *.sql
 a.py
 tree.txt
+node_modules/
+.env
+*.db
+server/database.db
+*.log
