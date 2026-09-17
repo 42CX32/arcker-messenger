@@ -1,0 +1,62 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+# Backend
+server/node_modules/
+server/.env
+
+# Database (فعلا اگر میخواهی روی GitHub نرود)
+server/*.db
+server/*.sqlite
+
+# Uploads
+server/uploads/
+
+# OS
+Thumbs.db
+.env
+server/backups/
+*.db
+*.txt
+# Secrets
+.env
+
+# Node
+node_modules/
+*/node_modules/
+
+# Database
+*.db
+*.sqlite
+
+# Logs
+*.log
+
+# Backups
+server/backups/
+
+# Personal files
+*.sql
+a.py
+tree.txt

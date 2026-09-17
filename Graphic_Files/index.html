@@ -1,0 +1,3101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <div style="display: flex; justify-content: center; gap: 16px; margin-top: 16px;">
+    <a href="/messenger.html" class="btn primary" style="text-decoration: none; padding: 12px 32px; font-size: 1rem;">
+        💬 پیامرسان
+    </a>
+
+</div>
+
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TWELVE</title>
+    <!-- Persian Fonts: Vazirmatn + Lalezar for "تو" -->
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;700;900&family=Lalezar&display=swap"
+    rel="stylesheet" />
+    <!-- Futuristic + Handwritten fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Dancing+Script:wght@400;600;700&family=Audiowide&family=Rajdhani:wght@300;400;600;700&display=swap"
+    rel="stylesheet" />
+    <style>
+    /* ================================================================
+           RESET & BASE – Premium Cyber Theme (Purple + Orange as separate accents)
+           ================================================================ */
+
+    *,
+    *::before,
+    *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    /* ----- DEFAULT: Premium Cyber Theme (Purple & Orange separate) ----- */
+    :root {
+        /* Core colors */
+        --bg-primary: #0b0719;
+        --bg-secondary: #120c24;
+        --bg-card: rgba(30, 18, 60, 0.55);
+        --bg-card-hover: rgba(45, 28, 80, 0.65);
+
+        /* Purple palette (primary) */
+        --purple-deep: #4a1a8a;
+        --purple-mid: #7c3aed;
+        --purple-light: #a78bfa;
+        --purple-glow: rgba(124, 58, 237, 0.4);
+
+        /* Orange palette (secondary) */
+        --orange-bright: #f97316;
+        --orange-mid: #fb923c;
+        --orange-light: #fdba74;
+        --orange-glow: rgba(249, 115, 22, 0.4);
+
+        /* No gradient blending purple & orange; each has own role */
+        --gradient-main: linear-gradient(135deg, var(--purple-deep), var(--purple-mid));
+        --gradient-btn-primary: linear-gradient(135deg, var(--orange-bright), var(--orange-mid));
+        --gradient-btn-secondary: linear-gradient(135deg, var(--purple-deep), var(--purple-mid));
+        --gradient-btn-hover-primary: linear-gradient(135deg, #ea580c, #f97316);
+        --gradient-btn-hover-secondary: linear-gradient(135deg, #6d28d9, #7c3aed);
+
+        /* Text */
+        --text-primary: #f0eaff;
+        --text-secondary: #c4b5e3;
+        --text-muted: #8b7aaa;
+
+        /* Borders & glow */
+        --border-color: var(--purple-mid);
+        --border-glow: 0 0 20px rgba(124, 58, 237, 0.15);
+        --glow-purple: 0 0 30px rgba(124, 58, 237, 0.25);
+        --glow-orange: 0 0 30px rgba(249, 115, 22, 0.2);
+
+        /* Glassmorphism */
+        --glass-bg: rgba(20, 12, 40, 0.6);
+        --glass-border: rgba(124, 58, 237, 0.25);
+        --glass-blur: 12px;
+        --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+
+        /* Buttons */
+        --btn-radius: 12px;
+        --btn-shadow: 0 4px 20px rgba(249, 115, 22, 0.3);
+
+        /* Inputs */
+        --input-radius: 10px;
+        --input-border: rgba(124, 58, 237, 0.4);
+        --input-focus-glow: 0 0 25px rgba(249, 115, 22, 0.2);
+
+        /* Font & sizing – will be overridden by body classes */
+        --font: 'Courier New', Courier, 'Lucida Sans Typewriter', monospace;
+        --font-size-base: 15px;
+        --font-size-sm: 0.75rem;
+        --font-size-md: 0.9rem;
+        --font-size-lg: 1.05rem;
+        --font-size-xl: 1.2rem;
+        --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+        /* Settings */
+        --settings-bg: rgba(20, 12, 40, 0.85);
+        --settings-border: rgba(124, 58, 237, 0.3);
+        --settings-text: #f0eaff;
+
+        /* Hyperlinks */
+        --link-color: var(--purple-light);
+    }
+
+    /* ----- Text Size classes – FIXED! ----- */
+    body.text-small {
+        --font-size-base: 12px;
+        --font-size-sm: 0.65rem;
+        --font-size-md: 0.75rem;
+        --font-size-lg: 0.9rem;
+        --font-size-xl: 1.0rem;
+    }
+
+    body.text-medium {
+        --font-size-base: 15px;
+        --font-size-sm: 0.75rem;
+        --font-size-md: 0.9rem;
+        --font-size-lg: 1.05rem;
+        --font-size-xl: 1.2rem;
+    }
+
+    body.text-large {
+        --font-size-base: 19px;
+        --font-size-sm: 0.85rem;
+        --font-size-md: 1.05rem;
+        --font-size-lg: 1.25rem;
+        --font-size-xl: 1.5rem;
+    }
+
+    body.text-xlarge {
+        --font-size-base: 24px;
+        --font-size-sm: 1.0rem;
+        --font-size-md: 1.25rem;
+        --font-size-lg: 1.5rem;
+        --font-size-xl: 1.8rem;
+    }
+
+    /* ----- Other themes ----- */
+    body.theme-dark {
+        --bg-primary: #000000;
+        --bg-secondary: #0a0a0a;
+        --bg-card: rgba(0, 0, 0, 0.7);
+        --text-primary: #00FF66;
+        --text-secondary: #00cc52;
+        --text-muted: #008844;
+        --border-color: #00FF66;
+        --border-glow: 0 0 20px rgba(0, 255, 102, 0.1);
+        --glow-purple: 0 0 30px rgba(0, 255, 102, 0.15);
+        --glow-orange: 0 0 30px rgba(0, 255, 102, 0.1);
+        --glass-bg: rgba(0, 0, 0, 0.7);
+        --glass-border: rgba(0, 255, 102, 0.2);
+        --glass-blur: 8px;
+        --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+        --gradient-main: linear-gradient(135deg, #001a0a, #00FF66);
+        --gradient-btn-primary: linear-gradient(135deg, #00FF66, #00cc52);
+        --gradient-btn-secondary: linear-gradient(135deg, #001a0a, #00FF66);
+        --gradient-btn-hover-primary: linear-gradient(135deg, #00cc52, #00FF66);
+        --gradient-btn-hover-secondary: linear-gradient(135deg, #00331a, #00cc52);
+        --btn-shadow: 0 4px 20px rgba(0, 255, 102, 0.2);
+        --input-border: rgba(0, 255, 102, 0.4);
+        --input-focus-glow: 0 0 25px rgba(0, 255, 102, 0.15);
+        --settings-bg: rgba(0, 0, 0, 0.9);
+        --settings-border: #00FF66;
+        --settings-text: #00FF66;
+        --text-primary: #00FF66;
+        --text-secondary: #00cc52;
+        --text-muted: #008844;
+        --purple-deep: #001a0a;
+        --purple-mid: #00FF66;
+        --purple-light: #66ff99;
+        --orange-bright: #00FF66;
+        --orange-mid: #00cc52;
+        --orange-light: #66ff99;
+        --link-color: #66ff99;
+        --glass-border: rgba(0, 255, 102, 0.2);
+    }
+
+    body.theme-light {
+        --bg-primary: #f0f4f0;
+        --bg-secondary: #e8ece8;
+        --bg-card: rgba(240, 244, 240, 0.7);
+        --text-primary: #006633;
+        --text-secondary: #004d26;
+        --text-muted: #2a6644;
+        --border-color: #006633;
+        --border-glow: 0 0 20px rgba(0, 102, 51, 0.08);
+        --glow-purple: 0 0 30px rgba(0, 102, 51, 0.08);
+        --glow-orange: 0 0 30px rgba(0, 102, 51, 0.05);
+        --glass-bg: rgba(240, 248, 240, 0.7);
+        --glass-border: rgba(0, 102, 51, 0.2);
+        --glass-blur: 8px;
+        --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+        --gradient-main: linear-gradient(135deg, #e6f0e6, #006633);
+        --gradient-btn-primary: linear-gradient(135deg, #006633, #004d26);
+        --gradient-btn-secondary: linear-gradient(135deg, #e6f0e6, #006633);
+        --gradient-btn-hover-primary: linear-gradient(135deg, #004d26, #006633);
+        --gradient-btn-hover-secondary: linear-gradient(135deg, #cce0cc, #004d26);
+        --btn-shadow: 0 4px 20px rgba(0, 102, 51, 0.15);
+        --input-border: rgba(0, 102, 51, 0.3);
+        --input-focus-glow: 0 0 25px rgba(0, 102, 51, 0.08);
+        --settings-bg: rgba(240, 248, 240, 0.95);
+        --settings-border: #006633;
+        --settings-text: #006633;
+        --purple-deep: #004d26;
+        --purple-mid: #006633;
+        --purple-light: #339966;
+        --orange-bright: #006633;
+        --orange-mid: #004d26;
+        --orange-light: #339966;
+        --link-color: #339966;
+        --glass-border: rgba(0, 102, 51, 0.2);
+    }
+
+    body.theme-blue {
+        --bg-primary: #0a0a1a;
+        --bg-secondary: #0f0f2a;
+        --bg-card: rgba(10, 10, 30, 0.7);
+        --text-primary: #4488ff;
+        --text-secondary: #3366cc;
+        --text-muted: #2255aa;
+        --border-color: #4488ff;
+        --border-glow: 0 0 20px rgba(68, 136, 255, 0.1);
+        --glow-purple: 0 0 30px rgba(68, 136, 255, 0.12);
+        --glow-orange: 0 0 30px rgba(68, 136, 255, 0.08);
+        --glass-bg: rgba(10, 10, 30, 0.7);
+        --glass-border: rgba(68, 136, 255, 0.2);
+        --glass-blur: 8px;
+        --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        --gradient-main: linear-gradient(135deg, #0a0a2a, #4488ff);
+        --gradient-btn-primary: linear-gradient(135deg, #4488ff, #3366cc);
+        --gradient-btn-secondary: linear-gradient(135deg, #0a0a2a, #4488ff);
+        --gradient-btn-hover-primary: linear-gradient(135deg, #3377ee, #4488ff);
+        --gradient-btn-hover-secondary: linear-gradient(135deg, #1a1a4a, #3377ee);
+        --btn-shadow: 0 4px 20px rgba(68, 136, 255, 0.2);
+        --input-border: rgba(68, 136, 255, 0.3);
+        --input-focus-glow: 0 0 25px rgba(68, 136, 255, 0.12);
+        --settings-bg: rgba(10, 10, 30, 0.9);
+        --settings-border: #4488ff;
+        --settings-text: #4488ff;
+        --purple-deep: #224488;
+        --purple-mid: #4488ff;
+        --purple-light: #88bbff;
+        --orange-bright: #4488ff;
+        --orange-mid: #3366cc;
+        --orange-light: #88bbff;
+        --link-color: #88bbff;
+        --glass-border: rgba(68, 136, 255, 0.2);
+    }
+
+    body.theme-green {
+        --bg-primary: #0a1a0a;
+        --bg-secondary: #0f2a0f;
+        --bg-card: rgba(10, 30, 10, 0.7);
+        --text-primary: #44dd88;
+        --text-secondary: #33bb66;
+        --text-muted: #229944;
+        --border-color: #44dd88;
+        --border-glow: 0 0 20px rgba(68, 221, 136, 0.1);
+        --glow-purple: 0 0 30px rgba(68, 221, 136, 0.12);
+        --glow-orange: 0 0 30px rgba(68, 221, 136, 0.08);
+        --glass-bg: rgba(10, 30, 10, 0.7);
+        --glass-border: rgba(68, 221, 136, 0.2);
+        --glass-blur: 8px;
+        --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        --gradient-main: linear-gradient(135deg, #0a2a0a, #44dd88);
+        --gradient-btn-primary: linear-gradient(135deg, #44dd88, #33bb66);
+        --gradient-btn-secondary: linear-gradient(135deg, #0a2a0a, #44dd88);
+        --gradient-btn-hover-primary: linear-gradient(135deg, #33cc77, #44dd88);
+        --gradient-btn-hover-secondary: linear-gradient(135deg, #1a3a1a, #33cc77);
+        --btn-shadow: 0 4px 20px rgba(68, 221, 136, 0.2);
+        --input-border: rgba(68, 221, 136, 0.3);
+        --input-focus-glow: 0 0 25px rgba(68, 221, 136, 0.12);
+        --settings-bg: rgba(10, 30, 10, 0.9);
+        --settings-border: #44dd88;
+        --settings-text: #44dd88;
+        --purple-deep: #1a6633;
+        --purple-mid: #44dd88;
+        --purple-light: #88eebb;
+        --orange-bright: #44dd88;
+        --orange-mid: #33bb66;
+        --orange-light: #88eebb;
+        --link-color: #88eebb;
+        --glass-border: rgba(68, 221, 136, 0.2);
+    }
+
+    body.theme-purple {
+        --bg-primary: #140a1a;
+        --bg-secondary: #1f0f2a;
+        --bg-card: rgba(20, 10, 30, 0.7);
+        --text-primary: #bb66ff;
+        --text-secondary: #9944dd;
+        --text-muted: #7733bb;
+        --border-color: #bb66ff;
+        --border-glow: 0 0 20px rgba(187, 102, 255, 0.1);
+        --glow-purple: 0 0 30px rgba(187, 102, 255, 0.12);
+        --glow-orange: 0 0 30px rgba(187, 102, 255, 0.08);
+        --glass-bg: rgba(20, 10, 30, 0.7);
+        --glass-border: rgba(187, 102, 255, 0.2);
+        --glass-blur: 8px;
+        --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        --gradient-main: linear-gradient(135deg, #1f0f2a, #bb66ff);
+        --gradient-btn-primary: linear-gradient(135deg, #bb66ff, #9944dd);
+        --gradient-btn-secondary: linear-gradient(135deg, #1f0f2a, #bb66ff);
+        --gradient-btn-hover-primary: linear-gradient(135deg, #aa55ee, #bb66ff);
+        --gradient-btn-hover-secondary: linear-gradient(135deg, #2f1a3a, #aa55ee);
+        --btn-shadow: 0 4px 20px rgba(187, 102, 255, 0.2);
+        --input-border: rgba(187, 102, 255, 0.3);
+        --input-focus-glow: 0 0 25px rgba(187, 102, 255, 0.12);
+        --settings-bg: rgba(20, 10, 30, 0.9);
+        --settings-border: #bb66ff;
+        --settings-text: #bb66ff;
+        --purple-deep: #552288;
+        --purple-mid: #bb66ff;
+        --purple-light: #ddaaff;
+        --orange-bright: #bb66ff;
+        --orange-mid: #9944dd;
+        --orange-light: #ddaaff;
+        --link-color: #ddaaff;
+        --glass-border: rgba(187, 102, 255, 0.2);
+    }
+
+    body.theme-red {
+        --bg-primary: #1a0a0a;
+        --bg-secondary: #2a0f0f;
+        --bg-card: rgba(30, 10, 10, 0.7);
+        --text-primary: #ff5555;
+        --text-secondary: #dd3333;
+        --text-muted: #bb2222;
+        --border-color: #ff5555;
+        --border-glow: 0 0 20px rgba(255, 85, 85, 0.1);
+        --glow-purple: 0 0 30px rgba(255, 85, 85, 0.12);
+        --glow-orange: 0 0 30px rgba(255, 85, 85, 0.08);
+        --glass-bg: rgba(30, 10, 10, 0.7);
+        --glass-border: rgba(255, 85, 85, 0.2);
+        --glass-blur: 8px;
+        --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        --gradient-main: linear-gradient(135deg, #2a0f0f, #ff5555);
+        --gradient-btn-primary: linear-gradient(135deg, #ff5555, #dd3333);
+        --gradient-btn-secondary: linear-gradient(135deg, #2a0f0f, #ff5555);
+        --gradient-btn-hover-primary: linear-gradient(135deg, #ee4444, #ff5555);
+        --gradient-btn-hover-secondary: linear-gradient(135deg, #3a1a1a, #ee4444);
+        --btn-shadow: 0 4px 20px rgba(255, 85, 85, 0.2);
+        --input-border: rgba(255, 85, 85, 0.3);
+        --input-focus-glow: 0 0 25px rgba(255, 85, 85, 0.12);
+        --settings-bg: rgba(30, 10, 10, 0.9);
+        --settings-border: #ff5555;
+        --settings-text: #ff5555;
+        --purple-deep: #881818;
+        --purple-mid: #ff5555;
+        --purple-light: #ff8888;
+        --orange-bright: #ff5555;
+        --orange-mid: #dd3333;
+        --orange-light: #ff8888;
+        --link-color: #ff8888;
+        --glass-border: rgba(255, 85, 85, 0.2);
+    }
+
+    /* ===== BASE STYLES ===== */
+    html,
+    body {
+        width: 100%;
+        min-height: 100vh;
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        font-family: var(--font);
+        font-size: var(--font-size-base);
+        line-height: 1.5;
+        transition: background var(--transition), color var(--transition), font-size 0.2s ease;
+        overflow-x: hidden;
+    }
+
+    /* Premium background with gradients and subtle patterns */
+    body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 0;
+        pointer-events: none;
+        background:
+            radial-gradient(ellipse at 20% 50%, rgba(124, 58, 237, 0.15) 0%, transparent 60%),
+            radial-gradient(ellipse at 80% 50%, rgba(249, 115, 22, 0.10) 0%, transparent 50%),
+            radial-gradient(ellipse at 50% 100%, rgba(74, 26, 138, 0.20) 0%, transparent 40%),
+            radial-gradient(ellipse at 50% 0%, rgba(124, 58, 237, 0.08) 0%, transparent 30%);
+        animation: bgPulse 8s ease-in-out infinite alternate;
+    }
+
+    @keyframes bgPulse {
+        0% {
+            opacity: 0.6;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+
+    /* Subtle geometric overlay */
+    body::after {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 0;
+        pointer-events: none;
+        background-image:
+            linear-gradient(rgba(124, 58, 237, 0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(249, 115, 22, 0.03) 1px, transparent 1px);
+        background-size: 40px 40px;
+        opacity: 0.5;
+    }
+
+    /* ===== SCROLLBAR ===== */
+    ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: var(--bg-secondary);
+        border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: var(--gradient-main);
+        border-radius: 4px;
+        box-shadow: var(--glow-purple);
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: var(--gradient-btn-secondary);
+    }
+
+    /* ===== MATRIX RAIN CANVAS ===== */
+    #matrix-canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 0;
+        pointer-events: none;
+        opacity: 0.08;
+        transition: opacity 0.6s;
+    }
+
+    body.theme-light #matrix-canvas {
+        opacity: 0.03;
+    }
+
+    /* ===== MAIN WRAPPER ===== */
+    .app-wrapper {
+        position: relative;
+        z-index: 1;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 20px 24px 40px;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* ===== HEADER – Premium Redesign ===== */
+    .header {
+        text-align: center;
+        padding: 18px 0 10px;
+        border-bottom: 2px solid var(--purple-mid);
+        margin-bottom: 28px;
+        box-shadow: var(--border-glow);
+        position: relative;
+        background: var(--glass-bg);
+        backdrop-filter: blur(var(--glass-blur));
+        -webkit-backdrop-filter: blur(var(--glass-blur));
+        border-radius: var(--btn-radius);
+        border: 1px solid var(--glass-border);
+        padding: 24px 24px 18px;
+        overflow: hidden;
+    }
+
+    /* Loading animation overlay */
+    .header::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 300%;
+        height: 100%;
+        background: linear-gradient(90deg,
+                transparent 0%,
+                rgba(124, 58, 237, 0.03) 30%,
+                rgba(249, 115, 22, 0.03) 60%,
+                transparent 100%);
+        animation: titleSweep 2.5s ease-in-out 0.2s forwards;
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    @keyframes titleSweep {
+        0% {
+            transform: translateX(0);
+            opacity: 0;
+        }
+        30% {
+            opacity: 1;
+        }
+        100% {
+            transform: translateX(66%);
+            opacity: 0;
+        }
+    }
+
+    .header-title-wrapper {
+        position: relative;
+        z-index: 1;
+        opacity: 0;
+        animation: titleReveal 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+    }
+
+    @keyframes titleReveal {
+        0% {
+            opacity: 0;
+            transform: scale(0.92) translateY(12px);
+            filter: blur(4px);
+        }
+        60% {
+            opacity: 1;
+            transform: scale(1.02) translateY(0);
+            filter: blur(0);
+        }
+        100% {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+            filter: blur(0);
+        }
+    }
+
+    .title-row {
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        gap: 28px;
+        flex-wrap: wrap;
+    }
+
+    .title-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+    }
+
+    .title-number {
+        font-family: 'Dancing Script', 'Pacifico', cursive;
+        font-size: clamp(1.6rem, 3.5vw, 2.8rem);
+        font-weight: 700;
+        color: var(--orange-bright);
+        text-shadow: 0 0 30px rgba(249, 115, 22, 0.3), 0 0 60px rgba(249, 115, 22, 0.1);
+        opacity: 0.85;
+        line-height: 1;
+        margin-bottom: -4px;
+        animation: numberGlow 3s ease-in-out infinite alternate;
+        letter-spacing: 1px;
+        transform: rotate(-2deg);
+    }
+
+    .title-number:last-of-type {
+        transform: rotate(2deg);
+    }
+
+    @keyframes numberGlow {
+        0% {
+            text-shadow: 0 0 20px rgba(249, 115, 22, 0.2), 0 0 40px rgba(249, 115, 22, 0.05);
+            opacity: 0.7;
+        }
+        100% {
+            text-shadow: 0 0 40px rgba(249, 115, 22, 0.5), 0 0 80px rgba(249, 115, 22, 0.15);
+            opacity: 1;
+        }
+    }
+
+    .title-word {
+        font-family: 'Orbitron', 'Audiowide', 'Rajdhani', sans-serif;
+        font-size: clamp(2.4rem, 6vw, 4.2rem);
+        font-weight: 900;
+        letter-spacing: 6px;
+        text-transform: uppercase;
+        color: var(--purple-light);
+        text-shadow: 0 0 30px rgba(124, 58, 237, 0.3), 0 0 60px rgba(124, 58, 237, 0.1);
+        transition: all var(--transition);
+        line-height: 1.1;
+        position: relative;
+    }
+
+    .title-word::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 10%;
+        width: 80%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, var(--orange-bright), transparent);
+        opacity: 0.3;
+        animation: titleUnderline 4s ease-in-out infinite alternate;
+    }
+
+    @keyframes titleUnderline {
+        0% {
+            opacity: 0.1;
+            transform: scaleX(0.6);
+        }
+        100% {
+            opacity: 0.5;
+            transform: scaleX(1);
+        }
+    }
+
+    .title-word:hover {
+        text-shadow: 0 0 50px rgba(124, 58, 237, 0.5), 0 0 100px rgba(249, 115, 22, 0.15);
+        transform: scale(1.02);
+    }
+
+    .title-separator {
+        font-family: 'Orbitron', sans-serif;
+        font-size: clamp(1.8rem, 4vw, 3.2rem);
+        color: var(--orange-bright);
+        opacity: 0.4;
+        padding: 0 4px;
+        align-self: center;
+        margin-bottom: 6px;
+        animation: sepPulse 3s ease-in-out infinite alternate;
+        text-shadow: 0 0 30px rgba(249, 115, 22, 0.15);
+    }
+
+    @keyframes sepPulse {
+        0% {
+            opacity: 0.3;
+            transform: scale(0.95);
+        }
+        100% {
+            opacity: 0.6;
+            transform: scale(1.05);
+        }
+    }
+
+    .header .sub {
+        font-size: clamp(0.7rem, 1.2vw, 1.0rem);
+        color: var(--orange-bright);
+        letter-spacing: 4px;
+        margin-top: 10px;
+        transition: color var(--transition);
+        opacity: 0.7;
+        font-family: 'Rajdhani', 'Courier New', monospace;
+        font-weight: 300;
+    }
+
+    .header .badge-row {
+        display: flex;
+        justify-content: center;
+        gap: 18px;
+        flex-wrap: wrap;
+        margin-top: 10px;
+        font-size: 0.7rem;
+        color: var(--text-muted);
+        letter-spacing: 1px;
+        transition: color var(--transition);
+    }
+
+    .header .badge-row span {
+        border: 1px solid var(--border-color);
+        padding: 2px 14px;
+        border-radius: 20px;
+        opacity: 0.7;
+        transition: all var(--transition);
+        background: rgba(124, 58, 237, 0.05);
+    }
+
+    .header .badge-row span:hover {
+        opacity: 1;
+        border-color: var(--orange-bright);
+        box-shadow: var(--glow-orange);
+    }
+
+    /* Settings gear – orange icon */
+    .settings-gear {
+        position: absolute;
+        top: 18px;
+        right: 20px;
+        background: var(--glass-bg);
+        backdrop-filter: blur(var(--glass-blur));
+        -webkit-backdrop-filter: blur(var(--glass-blur));
+        border: 1px solid var(--glass-border);
+        color: var(--orange-bright);
+        font-size: 1.4rem;
+        cursor: pointer;
+        transition: all var(--transition);
+        padding: 6px 12px;
+        border-radius: 50%;
+        line-height: 1;
+        opacity: 0.7;
+        width: 42px;
+        height: 42px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 5;
+    }
+
+    .settings-gear:hover {
+        opacity: 1;
+        transform: rotate(60deg) scale(1.08);
+        border-color: var(--orange-bright);
+        box-shadow: var(--glow-orange);
+        background: rgba(249, 115, 22, 0.1);
+    }
+
+    html.lang-fa .settings-gear {
+        right: auto;
+        left: 20px;
+    }
+
+    /* ===== TWO-COLUMN LAYOUT ===== */
+    .sections-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+        flex: 1;
+    }
+
+    @media (max-width: 820px) {
+        .sections-grid {
+            grid-template-columns: 1fr;
+            gap: 32px;
+        }
+        .title-row {
+            gap: 16px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .title-row {
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+        .title-separator {
+            transform: rotate(90deg);
+            padding: 4px 0;
+            margin: 0;
+        }
+        .title-group {
+            flex-direction: column;
+            align-items: center;
+        }
+        .title-number {
+            font-size: clamp(1.4rem, 5vw, 2rem);
+        }
+        .title-word {
+            font-size: clamp(1.8rem, 8vw, 2.6rem);
+            letter-spacing: 3px;
+        }
+        .header {
+            padding: 16px 12px 14px;
+        }
+        .settings-gear {
+            top: 12px;
+            right: 12px;
+            width: 36px;
+            height: 36px;
+            font-size: 1.2rem;
+        }
+        html.lang-fa .settings-gear {
+            right: auto;
+            left: 12px;
+        }
+    }
+
+    /* ===== SECTION CARD – Glassmorphism, border purple ===== */
+    .section-card {
+        border: 1px solid var(--purple-mid);
+        border-radius: var(--btn-radius);
+        background: var(--glass-bg);
+        backdrop-filter: blur(var(--glass-blur));
+        -webkit-backdrop-filter: blur(var(--glass-blur));
+        padding: 18px 20px 20px;
+        box-shadow: var(--glass-shadow), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        transition: all var(--transition);
+        display: flex;
+        flex-direction: column;
+    }
+
+    .section-card:hover {
+        border-color: var(--purple-light);
+        box-shadow: var(--glass-shadow), var(--glow-purple);
+    }
+
+    .section-card .section-title {
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        color: var(--purple-light);
+        border-bottom: 1px solid var(--glass-border);
+        padding-bottom: 6px;
+        margin-bottom: 14px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: all var(--transition);
+    }
+
+    .section-card .section-title .badge {
+        font-size: 0.6rem;
+        border: 1px solid var(--border-color);
+        padding: 1px 12px;
+        border-radius: 12px;
+        opacity: 0.6;
+        transition: all var(--transition);
+        background: rgba(124, 58, 237, 0.08);
+    }
+
+    .section-card .section-title .badge:hover {
+        opacity: 1;
+        border-color: var(--orange-bright);
+        box-shadow: var(--glow-orange);
+    }
+
+    /* ===== TEXT AREA GROUP ===== */
+    .text-area-group {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        margin-bottom: 10px;
+        position: relative;
+    }
+
+    .text-area-group .label-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+
+    .text-area-group .label-row label {
+        font-size: var(--font-size-sm);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: var(--text-secondary);
+        transition: color var(--transition);
+        flex: 1;
+        min-width: 120px;
+    }
+
+    .text-area-group .label-row label .input-stats {
+        font-size: 0.6rem;
+        opacity: 0.5;
+        margin-left: 12px;
+        font-weight: 400;
+        letter-spacing: 0.5px;
+        color: var(--text-muted);
+    }
+
+    html.lang-fa .text-area-group .label-row label .input-stats {
+        margin-left: 0;
+        margin-right: 12px;
+    }
+
+    /* Copy button – purple border, orange icon */
+    .btn-copy-label {
+        background: rgba(124, 58, 237, 0.1);
+        border: 1px solid var(--purple-mid);
+        color: var(--text-secondary);
+        font-family: var(--font);
+        font-size: var(--font-size-sm);
+        padding: 2px 12px;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: all var(--transition);
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        white-space: nowrap;
+        opacity: 0.7;
+        line-height: 1.6;
+        flex-shrink: 0;
+    }
+
+    .btn-copy-label:hover {
+        opacity: 1;
+        background: var(--gradient-btn-secondary);
+        color: #fff;
+        box-shadow: var(--glow-purple);
+        transform: scale(1.04);
+        border-color: transparent;
+    }
+
+    .btn-copy-label:active {
+        transform: scale(0.94);
+    }
+
+    .btn-copy-label .icon {
+        font-size: 0.9rem;
+        line-height: 1;
+        color: var(--orange-bright);
+    }
+
+    /* ===== TEXTAREAS – focus orange ===== */
+    .cipher-textarea {
+        width: 100%;
+        min-height: 100px;
+        max-height: 260px;
+        background: rgba(0, 0, 0, 0.35);
+        border: 1px solid var(--input-border);
+        border-radius: var(--input-radius);
+        color: var(--text-primary);
+        font-family: var(--font);
+        font-size: var(--font-size-md);
+        padding: 12px 14px;
+        resize: vertical;
+        outline: none;
+        transition: all var(--transition);
+        line-height: 1.6;
+        tab-size: 4;
+    }
+
+    .cipher-textarea:focus {
+        border-color: var(--orange-bright);
+        box-shadow: var(--input-focus-glow), 0 0 0 3px rgba(249, 115, 22, 0.08);
+    }
+
+    .cipher-textarea::placeholder {
+        color: var(--text-muted);
+        opacity: 0.4;
+        font-size: var(--font-size-sm);
+    }
+
+    .cipher-textarea.output-area {
+        background: rgba(0, 0, 0, 0.2);
+        cursor: default;
+        border-color: rgba(124, 58, 237, 0.15);
+    }
+
+    .cipher-textarea.output-area:focus {
+        border-color: rgba(124, 58, 237, 0.2);
+        box-shadow: none;
+    }
+
+    /* ===== BUTTONS – primary orange, secondary purple ===== */
+    .btn-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: 6px 0 10px;
+        align-items: center;
+    }
+
+    .btn {
+        background: rgba(124, 58, 237, 0.08);
+        border: 1px solid var(--glass-border);
+        color: var(--text-primary);
+        font-family: var(--font);
+        font-size: var(--font-size-sm);
+        padding: 8px 20px;
+        border-radius: var(--btn-radius);
+        cursor: pointer;
+        transition: all var(--transition);
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        line-height: 1.4;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .btn::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: var(--btn-radius);
+        background: var(--gradient-btn-secondary);
+        opacity: 0;
+        transition: opacity var(--transition);
+        z-index: -1;
+    }
+
+    .btn:hover::after {
+        opacity: 1;
+    }
+
+    .btn:hover {
+        color: #fff;
+        border-color: transparent;
+        box-shadow: var(--glow-purple);
+        transform: translateY(-2px) scale(1.02);
+    }
+
+    .btn:active {
+        transform: scale(0.95) translateY(0);
+    }
+
+    /* Primary button – orange */
+    .btn.primary {
+        background: var(--gradient-btn-primary);
+        color: #fff;
+        border-color: transparent;
+        box-shadow: var(--btn-shadow);
+        font-weight: 700;
+    }
+
+    .btn.primary::after {
+        background: var(--gradient-btn-hover-primary);
+    }
+
+    .btn.primary:hover {
+        box-shadow: var(--btn-shadow), var(--glow-orange);
+        transform: translateY(-2px) scale(1.03);
+    }
+
+    /* Secondary button (non-primary) – purple */
+    .btn:not(.primary) {
+        border-color: var(--purple-mid);
+    }
+
+    .btn:not(.primary):hover {
+        border-color: transparent;
+        box-shadow: var(--glow-purple);
+    }
+
+    .btn:disabled {
+        opacity: 0.3;
+        pointer-events: none;
+        transform: none;
+    }
+
+    .btn .icon {
+        font-size: 1.1rem;
+        line-height: 1;
+        color: var(--orange-bright);
+    }
+
+    /* FOR YOU button – romantic style */
+    .btn.for-you-btn {
+        border-color: #ec4899;
+        color: #ec4899;
+        background: rgba(236, 72, 153, 0.08);
+        font-weight: 700;
+        letter-spacing: 2px;
+    }
+
+    .btn.for-you-btn::after {
+        background: linear-gradient(135deg, #ec4899, #f472b6);
+    }
+
+    .btn.for-you-btn:hover {
+        color: #fff;
+        border-color: transparent;
+        box-shadow: 0 0 30px rgba(236, 72, 153, 0.3);
+    }
+
+    .btn.for-you-btn .icon {
+        color: #ec4899;
+    }
+
+    .btn.for-you-btn:hover .icon {
+        color: #fff;
+    }
+
+    /* ===== STATS ROW ===== */
+    .stats-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px 24px;
+        padding: 10px 0 4px;
+        border-top: 1px solid var(--glass-border);
+        margin-top: 6px;
+        font-size: var(--font-size-sm);
+        color: var(--text-muted);
+        letter-spacing: 0.5px;
+        transition: all var(--transition);
+    }
+
+    .stats-row .stat-item {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+    }
+
+    .stats-row .stat-item .num {
+        color: var(--text-primary);
+        font-weight: 700;
+        min-width: 28px;
+        transition: color var(--transition);
+    }
+
+    .stats-row .stat-item .label {
+        opacity: 0.6;
+    }
+
+    /* ===== TOOLBAR – buttons secondary (purple) ===== */
+    .toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 12px 0 6px;
+        border-top: 1px solid var(--glass-border);
+        margin-top: 16px;
+        align-items: center;
+        justify-content: center;
+        transition: border-color var(--transition);
+    }
+
+    .toolbar .btn {
+        font-size: var(--font-size-sm);
+        padding: 6px 16px;
+        border-color: var(--purple-mid);
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+        text-align: center;
+        font-size: var(--font-size-sm);
+        color: var(--text-muted);
+        padding-top: 28px;
+        margin-top: 16px;
+        border-top: 1px solid var(--glass-border);
+        letter-spacing: 2px;
+        transition: all var(--transition);
+    }
+
+    .footer a {
+        color: var(--link-color);
+        text-decoration: none;
+        border-bottom: 1px dotted transparent;
+        transition: border-color var(--transition);
+    }
+
+    .footer a:hover {
+        border-color: var(--link-color);
+    }
+
+    /* ===== TYPEWRITER CURSOR ===== */
+    .typing-cursor::after {
+        content: '▌';
+        animation: blink 0.9s step-end infinite;
+        color: var(--purple-mid);
+        margin-left: 2px;
+    }
+
+    @keyframes blink {
+
+        0%,
+        100% {
+            opacity: 1;
+        }
+
+        50% {
+            opacity: 0;
+        }
+    }
+
+    /* ===== DRAG & DROP ===== */
+    .drag-over {
+        border-color: var(--orange-bright) !important;
+        box-shadow: var(--glow-orange) !important;
+        background: rgba(249, 115, 22, 0.05) !important;
+    }
+
+    /* ===== TOAST – orange notification ===== */
+    .toast {
+        position: fixed;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%) translateY(20px);
+        background: var(--glass-bg);
+        backdrop-filter: blur(var(--glass-blur));
+        -webkit-backdrop-filter: blur(var(--glass-blur));
+        border: 1px solid var(--orange-bright);
+        color: var(--text-primary);
+        padding: 12px 32px;
+        border-radius: var(--btn-radius);
+        font-family: var(--font);
+        font-size: var(--font-size-md);
+        letter-spacing: 1px;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        box-shadow: var(--glass-shadow), var(--glow-orange);
+        z-index: 999;
+        pointer-events: none;
+    }
+
+    .toast.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) translateY(0);
+    }
+
+    /* =============================================================
+           FOR YOU OVERLAY – Cinematic full‑screen experience
+           ============================================================= */
+    .for-you-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 3000;
+        background: rgba(11, 7, 25, 0.92);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        opacity: 0;
+        transition: opacity 0.6s ease;
+    }
+
+    .for-you-overlay.active {
+        display: flex;
+        opacity: 1;
+    }
+
+    .for-you-overlay .for-you-content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        padding: 40px;
+        position: relative;
+    }
+
+    .for-you-overlay .for-you-word {
+        font-size: 4rem;
+        font-weight: 700;
+        color: #f0eaff;
+        text-align: center;
+        opacity: 0;
+        transform: scale(0.85);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+        text-shadow: 0 0 60px rgba(124, 58, 237, 0.3), 0 0 120px rgba(249, 115, 22, 0.1);
+        max-width: 90vw;
+        line-height: 1.4;
+        font-family: 'Vazirmatn', 'Courier New', monospace;
+    }
+
+    .for-you-overlay .for-you-word.show {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    .for-you-overlay .for-you-word.hide {
+        opacity: 0;
+        transform: scale(1.08);
+    }
+
+    .for-you-overlay .for-you-word.is-too {
+        font-family: 'Lalezar', 'Vazirmatn', 'Courier New', monospace;
+        font-size: 7rem;
+        font-weight: 900;
+        color: #f472b6;
+        text-shadow: 0 0 80px rgba(236, 72, 153, 0.4), 0 0 160px rgba(236, 72, 153, 0.15);
+        letter-spacing: 2px;
+    }
+
+    .for-you-overlay .for-you-close {
+        position: fixed;
+        top: 24px;
+        right: 28px;
+        background: rgba(124, 58, 237, 0.12);
+        border: 1px solid var(--purple-mid);
+        color: var(--text-secondary);
+        font-size: 1.6rem;
+        cursor: pointer;
+        transition: all var(--transition);
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        opacity: 0.5;
+    }
+
+    .for-you-overlay .for-you-close:hover {
+        opacity: 1;
+        background: var(--gradient-btn-secondary);
+        color: #fff;
+        border-color: transparent;
+        transform: rotate(90deg) scale(1.08);
+        box-shadow: var(--glow-purple);
+    }
+
+    .for-you-overlay .for-you-aura {
+        position: absolute;
+        width: 70vmin;
+        height: 70vmin;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(124, 58, 237, 0.08) 0%, transparent 70%);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+        animation: auraPulse 4s ease-in-out infinite alternate;
+    }
+
+    @keyframes auraPulse {
+        0% {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 0.6;
+        }
+        100% {
+            transform: translate(-50%, -50%) scale(1.2);
+            opacity: 1;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .for-you-overlay .for-you-word {
+            font-size: 2.8rem;
+        }
+        .for-you-overlay .for-you-word.is-too {
+            font-size: 4.8rem;
+        }
+        .for-you-overlay .for-you-close {
+            top: 16px;
+            right: 16px;
+            width: 44px;
+            height: 44px;
+            font-size: 1.3rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .for-you-overlay .for-you-word {
+            font-size: 2.2rem;
+        }
+        .for-you-overlay .for-you-word.is-too {
+            font-size: 3.8rem;
+        }
+        .for-you-overlay .for-you-content {
+            padding: 20px;
+        }
+    }
+
+    /* ===== Persian language overrides ===== */
+    html.lang-fa {
+        direction: rtl;
+        font-family: 'Vazirmatn', 'Courier New', monospace;
+    }
+
+    html.lang-fa body {
+        font-family: 'Vazirmatn', 'Courier New', monospace;
+    }
+
+    html.lang-fa .header h1 {
+        font-family: 'Vazirmatn', 'Courier New', monospace;
+    }
+
+    html.lang-fa .cipher-textarea,
+    html.lang-fa .btn,
+    html.lang-fa .stats-row,
+    html.lang-fa .footer,
+    html.lang-fa .settings-panel {
+        font-family: 'Vazirmatn', 'Courier New', monospace;
+    }
+
+    html.lang-fa .badge-row span,
+    html.lang-fa .section-title,
+    html.lang-fa .text-area-group label,
+    html.lang-fa .toolbar .btn,
+    html.lang-fa .btn-copy-label {
+        font-family: 'Vazirmatn', 'Courier New', monospace;
+    }
+
+    html.lang-fa .for-you-overlay .for-you-word {
+        font-family: 'Vazirmatn', 'Courier New', monospace;
+    }
+
+    html.lang-fa .for-you-overlay .for-you-word.is-too {
+        font-family: 'Lalezar', 'Vazirmatn', 'Courier New', monospace;
+    }
+
+    /* Title fonts in Persian mode – keep Orbitron for the main words */
+    html.lang-fa .title-word {
+        font-family: 'Orbitron', 'Audiowide', 'Rajdhani', sans-serif;
+        letter-spacing: 4px;
+    }
+
+    html.lang-fa .title-number {
+        font-family: 'Dancing Script', 'Pacifico', cursive;
+    }
+
+    html.lang-fa .title-separator {
+        font-family: 'Orbitron', sans-serif;
+    }
+
+    /* =============================================================
+           SETTINGS PANEL – Glassmorphism, purple borders, orange accents
+           ============================================================= */
+    .settings-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 2000;
+        background: rgba(11, 7, 25, 0.6);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        display: none;
+        justify-content: flex-end;
+        animation: settingsFadeIn 0.25s ease;
+    }
+
+    .settings-overlay.active {
+        display: flex;
+    }
+
+    @keyframes settingsFadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    .settings-panel {
+        width: 100%;
+        max-width: 420px;
+        height: 100vh;
+        background: var(--settings-bg);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border-left: 1px solid var(--purple-mid);
+        color: var(--settings-text);
+        padding: 28px 24px 32px;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        animation: settingsSlideIn 0.3s ease;
+        transition: all var(--transition);
+        box-shadow: -8px 0 40px rgba(0, 0, 0, 0.4);
+    }
+
+    html.lang-fa .settings-panel {
+        border-left: none;
+        border-right: 1px solid var(--purple-mid);
+    }
+
+    @keyframes settingsSlideIn {
+        from {
+            transform: translateX(40px);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+
+    html.lang-fa @keyframes settingsSlideIn {
+        from {
+            transform: translateX(-40px);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+
+    .settings-panel .settings-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 16px;
+        border-bottom: 1px solid var(--purple-mid);
+        flex-shrink: 0;
+        transition: border-color var(--transition);
+    }
+
+    .settings-panel .settings-header h2 {
+        font-size: 1.3rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--settings-text);
+        transition: color var(--transition);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .settings-panel .settings-header h2 span:first-child {
+        color: var(--orange-bright);
+    }
+
+    .settings-panel .settings-header .close-settings {
+        background: rgba(124, 58, 237, 0.08);
+        border: 1px solid var(--purple-mid);
+        color: var(--settings-text);
+        font-size: 1.4rem;
+        cursor: pointer;
+        transition: all var(--transition);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .settings-panel .settings-header .close-settings:hover {
+        background: var(--gradient-btn-secondary);
+        color: #fff;
+        border-color: transparent;
+        transform: rotate(90deg) scale(1.05);
+        box-shadow: var(--glow-purple);
+    }
+
+    .settings-panel .settings-section .section-label {
+        font-size: var(--font-size-sm);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: var(--text-muted);
+        opacity: 0.7;
+        font-weight: 600;
+        transition: color var(--transition);
+    }
+
+    .settings-panel .settings-section .option-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: 6px;
+    }
+
+    .settings-panel .settings-section .option-group .opt-btn {
+        background: rgba(124, 58, 237, 0.06);
+        border: 1px solid var(--purple-mid);
+        color: var(--settings-text);
+        font-family: var(--font);
+        font-size: var(--font-size-sm);
+        padding: 6px 16px;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: all var(--transition);
+        opacity: 0.6;
+        text-transform: capitalize;
+        letter-spacing: 0.5px;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+    }
+
+    .settings-panel .settings-section .option-group .opt-btn:hover {
+        opacity: 0.9;
+        transform: scale(1.04);
+        border-color: var(--orange-bright);
+        box-shadow: var(--glow-orange);
+    }
+
+    .settings-panel .settings-section .option-group .opt-btn.active {
+        background: var(--gradient-btn-secondary);
+        color: #fff;
+        opacity: 1;
+        border-color: transparent;
+        box-shadow: var(--glow-purple);
+    }
+
+    .settings-panel .settings-section .option-group .opt-btn .dot {
+        display: inline-block;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        margin-right: 6px;
+        vertical-align: middle;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        flex-shrink: 0;
+    }
+
+    html.lang-fa .settings-panel .settings-section .option-group .opt-btn .dot {
+        margin-right: 0;
+        margin-left: 6px;
+    }
+
+    .settings-panel .settings-section .option-group .opt-btn .dot.dark-dot {
+        background: #111;
+    }
+
+    .settings-panel .settings-section .option-group .opt-btn .dot.light-dot {
+        background: #e8ece8;
+    }
+
+    .settings-panel .settings-section .option-group .opt-btn .dot.blue-dot {
+        background: #4488ff;
+    }
+
+    .settings-panel .settings-section .option-group .opt-btn .dot.green-dot {
+        background: #44dd88;
+    }
+
+    .settings-panel .settings-section .option-group .opt-btn .dot.purple-dot {
+        background: #bb66ff;
+    }
+
+    .settings-panel .settings-section .option-group .opt-btn .dot.red-dot {
+        background: #ff5555;
+    }
+
+    .settings-panel .settings-footer {
+        margin-top: auto;
+        padding-top: 16px;
+        border-top: 1px solid rgba(124, 58, 237, 0.1);
+        font-size: var(--font-size-sm);
+        opacity: 0.4;
+        text-align: center;
+        transition: all var(--transition);
+        color: var(--text-muted);
+    }
+
+    .settings-panel::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    .settings-panel::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    .settings-panel::-webkit-scrollbar-thumb {
+        background: var(--purple-mid);
+        border-radius: 4px;
+    }
+
+    /* Persian overrides */
+    html.lang-fa .settings-panel .settings-section .option-group .opt-btn {
+        font-family: 'Vazirmatn', 'Courier New', monospace;
+    }
+
+    html.lang-fa .settings-panel .settings-header h2 {
+        font-family: 'Vazirmatn', 'Courier New', monospace;
+    }
+
+    html.lang-fa .settings-panel .settings-section .section-label {
+        font-family: 'Vazirmatn', 'Courier New', monospace;
+    }
+
+    @media (max-width: 480px) {
+        .settings-panel {
+            max-width: 100%;
+            padding: 20px 16px 24px;
+        }
+        .settings-panel .settings-section .option-group .opt-btn {
+            font-size: var(--font-size-sm);
+            padding: 4px 12px;
+        }
+        .settings-panel .settings-section .option-group {
+            gap: 4px;
+        }
+    }
+
+    /* ===== RESPONSIVE adjustments for header ===== */
+    @media (max-width: 820px) {
+        .title-row {
+            gap: 18px;
+        }
+        .title-separator {
+            font-size: clamp(1.4rem, 3vw, 2.2rem);
+        }
+    }
+
+    @media (max-width: 600px) {
+        .title-row {
+            gap: 10px;
+        }
+        .title-separator {
+            font-size: 1.2rem;
+        }
+        .title-number {
+            font-size: clamp(1.2rem, 4vw, 1.6rem);
+        }
+        .title-word {
+            font-size: clamp(1.4rem, 6vw, 2rem);
+            letter-spacing: 2px;
+        }
+        .header .sub {
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+        }
+        .header .badge-row span {
+            font-size: 0.55rem;
+            padding: 1px 10px;
+        }
+    }
+    </style>
+</head>
+
+<body>
+
+    <!-- ===== MATRIX RAIN CANVAS ===== -->
+    <canvas id="matrix-canvas"></canvas>
+
+    <!-- ===== TOAST ===== -->
+    <div id="toast" class="toast"></div>
+
+    <!-- ===== APP ===== -->
+    <div class="app-wrapper" id="app">
+
+        <!-- HEADER – Redesigned with numbers above each word -->
+        <header class="header">
+            <div class="header-title-wrapper">
+                <div class="title-row">
+                    <div class="title-group">
+                        <span class="title-number" id="titleNum1">12</span>
+                        <span class="title-word" id="titleWord1">ARCKER</span>
+                    </div>
+                    <span class="title-separator">⬡</span>
+                    <div class="title-group">
+                        <span class="title-number" id="titleNum2">21</span>
+                        <span class="title-word" id="titleWord2">AZCKER</span>
+                    </div>
+                </div>
+            </div>
+            <div class="sub" id="appSub">+G-`Z-D4-C3-E5- B2-F6-\P-D4-?J- :U-@A-\P-.X- %D-D4- C3-#B-D4-?J-؟</div>
+            <div class="badge-row">
+                <span id="badge1">◈ Persian / English</span>
+                <span id="badge2">◈ Terminal UI</span>
+                <span id="badge3">◈ Offline</span>
+            </div>
+            <button class="settings-gear" id="settingsGear" aria-label="Settings">⚙️</button>
+        </header>
+
+        <!-- SECTIONS GRID -->
+        <div class="sections-grid" id="sectionsGrid">
+
+            <!-- ===== SECTION 1: ENCRYPT ===== -->
+            <section class="section-card" id="sectionEncrypt">
+                <div class="section-title">
+                    <span id="encryptTitle">⧩ Encrypt</span>
+                    <span class="badge" id="encryptBadge">→ ARCKER</span>
+                </div>
+
+                <div class="text-area-group">
+                    <div class="label-row">
+                        <label for="encryptInput" id="encryptInputLabel">Input (Persian / English) <span
+                            class="input-stats" id="encryptInputStats">0 chars</span></label>
+                        <button class="btn-copy-label" id="copyOriginalBtn" title="Copy original text">
+                            <span class="icon">📋</span> <span id="copyOriginalLabel">Copy</span>
+                        </button>
+                    </div>
+                    <textarea class="cipher-textarea" id="encryptInput" placeholder="Enter Persian or English text..."
+                    spellcheck="false"></textarea>
+                </div>
+
+                <div class="btn-row">
+                    <button class="btn primary" id="encryptBtn"><span class="icon">⚡</span> <span
+                        id="encryptBtnText">Encrypt</span></button>
+                    <span style="font-size:0.65rem;color:var(--text-muted);opacity:0.5;margin-left:auto;"
+                    id="encryptTime"></span>
+                </div>
+
+                <div class="text-area-group">
+                    <div class="label-row">
+                        <label for="encryptOutput" id="encryptOutputLabel">Output (Encrypted ARCKER codes) <span
+                            class="input-stats" id="encryptOutputStats">0 chars</span></label>
+                        <button class="btn-copy-label" id="copyEncryptedBtn" title="Copy encrypted text">
+                            <span class="icon">📋</span> <span id="copyEncryptedLabel">Copy</span>
+                        </button>
+                    </div>
+                    <textarea class="cipher-textarea output-area" id="encryptOutput"
+                    placeholder="Encrypted codes appear here..." readonly spellcheck="false"></textarea>
+                </div>
+
+                <div class="stats-row" id="encryptStats">
+                    <span class="stat-item"><span class="label" id="statChars">Chars</span> <span class="num"
+                        id="encryptChars">0</span></span>
+                    <span class="stat-item"><span class="label" id="statWords">Words</span> <span class="num"
+                        id="encryptWords">0</span></span>
+                    <span class="stat-item"><span class="label" id="statLines">Lines</span> <span class="num"
+                        id="encryptLines">0</span></span>
+                </div>
+            </section>
+
+            <!-- ===== SECTION 2: DECRYPT ===== -->
+            <section class="section-card" id="sectionDecrypt">
+                <div class="section-title">
+                    <span id="decryptTitle">⧩ Decrypt</span>
+                    <span class="badge" id="decryptBadge">← Original</span>
+                </div>
+
+                <div class="text-area-group">
+                    <div class="label-row">
+                        <label for="decryptInput" id="decryptInputLabel">Input (ARCKER encrypted codes) <span
+                            class="input-stats" id="decryptInputStats">0 chars</span></label>
+                        <button class="btn-copy-label" id="copyCipherInputBtn" title="Copy cipher text">
+                            <span class="icon">📋</span> <span id="copyCipherInputLabel">Copy</span>
+                        </button>
+                    </div>
+                    <textarea class="cipher-textarea" id="decryptInput" placeholder="Enter ARCKER encrypted codes..."
+                    spellcheck="false"></textarea>
+                </div>
+
+                <div class="btn-row">
+                    <button class="btn primary" id="decryptBtn"><span class="icon">⚡</span> <span
+                        id="decryptBtnText">Decrypt</span></button>
+                    <span style="font-size:0.65rem;color:var(--text-muted);opacity:0.5;margin-left:auto;"
+                    id="decryptTime"></span>
+                </div>
+
+                <div class="text-area-group">
+                    <div class="label-row">
+                        <label for="decryptOutput" id="decryptOutputLabel">Output (Original readable text) <span
+                            class="input-stats" id="decryptOutputStats">0 chars</span></label>
+                        <button class="btn-copy-label" id="copyDecryptedBtn" title="Copy decrypted text">
+                            <span class="icon">📋</span> <span id="copyDecryptedLabel">Copy</span>
+                        </button>
+                    </div>
+                    <textarea class="cipher-textarea output-area" id="decryptOutput"
+                    placeholder="Decrypted text appears here..." readonly spellcheck="false"></textarea>
+                </div>
+
+                <div class="stats-row" id="decryptStats">
+                    <span class="stat-item"><span class="label" id="statChars2">Chars</span> <span class="num"
+                        id="decryptChars">0</span></span>
+                    <span class="stat-item"><span class="label" id="statWords2">Words</span> <span class="num"
+                        id="decryptWords">0</span></span>
+                    <span class="stat-item"><span class="label" id="statLines2">Lines</span> <span class="num"
+                        id="decryptLines">0</span></span>
+                </div>
+            </section>
+        </div>
+
+        <!-- TOOLBAR -->
+        <div class="toolbar" id="toolbar">
+            <button class="btn" data-action="pasteEncrypt"><span class="icon">📥</span> <span
+                id="toolPaste">Paste</span></button>
+            <button class="btn" data-action="clearAll"><span class="icon">✕</span> <span id="toolClear">Clear
+                All</span></button>
+            <button class="btn" data-action="swap"><span class="icon">⇆</span> <span id="toolSwap">Swap</span></button>
+            <button class="btn" data-action="downloadEncrypt"><span class="icon">⬇</span> <span
+                id="toolDownloadEnc">Download TXT</span></button>
+            <button class="btn" data-action="downloadDecrypt"><span class="icon">⬇</span> <span
+                id="toolDownloadDec">Download Decrypt</span></button>
+            <button class="btn" data-action="upload"><span class="icon">⬆</span> <span id="toolUpload">Upload
+                TXT</span></button>
+            <!-- FOR YOU button -->
+            <button class="btn for-you-btn" id="forYouBtn"><span class="icon">❤</span> <span
+                id="toolForYou">FOR YOU</span></button>
+            <input type="file" id="fileInput" accept=".txt" style="display:none;" />
+        </div>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <span id="footerText">◈ ARCKER </span>
+        </footer>
+    </div>
+
+    <!-- =============================================================
+    FOR YOU OVERLAY
+    ============================================================= -->
+    <div class="for-you-overlay" id="forYouOverlay">
+        <div class="for-you-aura"></div>
+        <div class="for-you-content">
+            <div class="for-you-word" id="forYouWord"></div>
+        </div>
+        <button class="for-you-close" id="forYouClose">✕</button>
+    </div>
+
+    <!-- =============================================================
+    SETTINGS PANEL
+    ============================================================= -->
+    <div class="settings-overlay" id="settingsOverlay">
+        <div class="settings-panel" id="settingsPanel">
+            <div class="settings-header">
+                <h2><span>⚙️</span> <span id="settingsTitle">Settings</span></h2>
+                <button class="close-settings" id="closeSettings">✕</button>
+            </div>
+
+            <div class="settings-section">
+                <div class="section-label" id="langLabel">Language</div>
+                <div class="option-group" id="langOptions">
+                    <button class="opt-btn" data-value="en" id="langEn">English</button>
+                    <button class="opt-btn" data-value="fa" id="langFa">فارسی</button>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <div class="section-label" id="themeLabel">Theme</div>
+                <div class="option-group" id="themeOptions">
+                    <!-- "Cyber" renamed to "خوش رنگ" – keep the same data-value -->
+                    <button class="opt-btn active" data-value="cyber"><span class="dot"
+                        style="background:linear-gradient(135deg,#7c3aed,#f97316);"></span>
+                    <span id="themeCyberLabel">خوش رنگ</span></button>
+                    <button class="opt-btn" data-value="dark"><span class="dot dark-dot"></span>
+                    <span>Dark</span></button>
+                    <button class="opt-btn" data-value="light"><span class="dot light-dot"></span>
+                    <span>Light</span></button>
+                    <button class="opt-btn" data-value="blue"><span class="dot blue-dot"></span>
+                    <span>Blue</span></button>
+                    <button class="opt-btn" data-value="green"><span class="dot green-dot"></span>
+                    <span>Green</span></button>
+                    <button class="opt-btn" data-value="purple"><span class="dot purple-dot"></span>
+                    <span>Purple</span></button>
+                    <button class="opt-btn" data-value="red"><span class="dot red-dot"></span> <span>Red</span></button>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <div class="section-label" id="sizeLabel">Text Size</div>
+                <div class="option-group" id="sizeOptions">
+                    <button class="opt-btn" data-value="small"><span>Small</span></button>
+                    <button class="opt-btn active" data-value="medium"><span>Medium</span></button>
+                    <button class="opt-btn" data-value="large"><span>Large</span></button>
+                    <button class="opt-btn" data-value="xlarge"><span>Extra Large</span></button>
+                </div>
+            </div>
+
+            <div class="settings-footer" id="settingsFooter">⚙️ Preferences saved locally</div>
+        </div>
+    </div>
+
+    <script>
+    (() => {
+        'use strict';
+
+        // =============================================================
+        //  1.  DICTIONARY
+        // =============================================================
+
+        const ENC_MAP = {
+            'A': '@Q',
+            'B': '9R',
+            'C': 'AX',
+            'D': '2L',
+            'E': 'K7',
+            'F': 'Z8',
+            'G': 'P4',
+            'H': 'W5',
+            'I': 'B2',
+            'J': 'D1',
+            'K': 'X6',
+            'L': 'Q0',
+            'M': 'R8',
+            'N': '*L',
+            'O': '&M',
+            'P': '%V',
+            'Q': '!X',
+            'R': 'H3',
+            'S': 'Y9',
+            'T': 'J6',
+            'U': 'C8',
+            'V': 'F0',
+            'W': 'M5',
+            'X': 'T2',
+            'Y': 'L9',
+            'Z': 'V7',
+            'a': '@q',
+            'b': 'sadfasdfasdf9r',
+            'c': 'ax',
+            'd': '2l',
+            'e': 'k7',
+            'f': 'z8',
+            'g': 'p4',
+            'h': 'w5',
+            'i': 'b2',
+            'j': 'd1',
+            'k': 'x6',
+            'l': 'q0',
+            'm': 'r8',
+            'n': '*l',
+            'o': '&m',
+            'p': '%v',
+            'q': '!x',
+            'r': 'h3',
+            's': 'y9',
+            't': 'j6',
+            'u': 'c8',
+            'v': 'f0',
+            'w': 'm5',
+            'x': 't2',
+            'y': 'l9',
+            'z': 'v7',
+            'ا': '@A',
+            'ب': '#B',
+            'پ': '$C',
+            'ت': '%D',
+            'ث': '&E',
+            'ج': '*F',
+            'چ': '+G',
+            'ح': '=H',
+            'خ': '!I',
+            'د': '?J',
+            'ذ': '~K',
+            'ر': '^L',
+            'ز': '<M',
+            'ژ': '>N',
+            'س': '/O',
+            'ش': '\\P',
+            'ص': '[Q',
+            'ض': ']R',
+            'ط': '{S',
+            'ظ': '}T',
+            'ع': ':U',
+            'غ': ';V',
+            'ف': ',W',
+            'ق': '.X',
+            'ک': '|Y',
+            'گ': '`Z',
+            'ل': 'A1',
+            'م': 'G8',
+            'ن': 'C3',
+            'و': 'D4',
+            'ه': 'E5',
+            'ی': 'F6',
+            '0': '0X',
+            '1': '1X',
+            '2': '2X',
+            '3': '3X',
+            '4': '4X',
+            '5': '5X',
+            '6': '6X',
+            '7': '7X',
+            '8': '8X',
+            '9': '9X',
+            '.': '>>',
+            ',': '<<',
+            '?': '?!',
+            '؟': '?-!',
+            '!': 'Q!7',
+            ':': 'R:4',
+            ';': 'T;9',
+            '-': 'M-2',
+            '_': 'N_8',
+            '(': 'P(6',
+            ')': 'S)3',
+            '[': 'L[5',
+            ']': 'K]1',
+            '{': 'U{7',
+            '}': 'V}2',
+            '/': 'W/9',
+            '\\': 'X\\4',
+            '@': 'Y@8',
+            '#': 'Z#6',
+            '$': 'G$3',
+            '%': 'H%5',
+            '&': 'J&1',
+            '*': 'C*8',
+            '+': 'D+7',
+            '=': 'E=9',
+            '"': 'F"2',
+            "'": "I'4",
+            '🧬': '10V3'
+        };
+
+        const DEC_MAP = {};
+        for (const [key, val] of Object.entries(ENC_MAP)) {
+            if (key === ' ') continue;
+            DEC_MAP[val] = key;
+        }
+
+        // =============================================================
+        //  2.  CORE ENGINE
+        // =============================================================
+
+        function encrypt(text) {
+            if (!text) return '';
+            const out = [];
+            for (const ch of text) {
+                if (ch === ' ' || ch === '\n' || ch === '\t' || ch === '\r') {
+                    out.push(ch);
+                    continue;
+                }
+                const code = ENC_MAP[ch];
+                if (code) {
+                    out.push(code);
+                    out.push('-');
+                } else {
+                    out.push(ch);
+                }
+            }
+            let result = out.join('');
+            if (result.endsWith('-')) {
+                result = result.slice(0, -1);
+            }
+            return result;
+        }
+
+        function decrypt(text) {
+            if (!text) return '';
+            const result = [];
+            let buffer = '';
+
+            function flushBuffer() {
+                if (!buffer) return;
+                const dec = DEC_MAP[buffer];
+                if (dec !== undefined) {
+                    result.push(dec);
+                } else {
+                    result.push(buffer);
+                }
+                buffer = '';
+            }
+
+            for (const ch of text) {
+                if (ch === ' ' || ch === '\n' || ch === '\t' || ch === '\r') {
+                    flushBuffer();
+                    result.push(ch);
+                    continue;
+                }
+                if (ch === '-') {
+                    flushBuffer();
+                    continue;
+                }
+                buffer += ch;
+            }
+            flushBuffer();
+            return result.join('');
+        }
+
+        // =============================================================
+        //  3.  DOM REFS
+        // =============================================================
+
+        const $ = (id) => document.getElementById(id);
+        const encryptInput = $('encryptInput');
+        const encryptOutput = $('encryptOutput');
+        const encryptBtn = $('encryptBtn');
+        const encryptTime = $('encryptTime');
+        const decryptInput = $('decryptInput');
+        const decryptOutput = $('decryptOutput');
+        const decryptBtn = $('decryptBtn');
+        const decryptTime = $('decryptTime');
+        const encryptChars = $('encryptChars');
+        const encryptWords = $('encryptWords');
+        const encryptLines = $('encryptLines');
+        const decryptChars = $('decryptChars');
+        const decryptWords = $('decryptWords');
+        const decryptLines = $('decryptLines');
+        const encryptInputStats = $('encryptInputStats');
+        const encryptOutputStats = $('encryptOutputStats');
+        const decryptInputStats = $('decryptInputStats');
+        const decryptOutputStats = $('decryptOutputStats');
+        const toast = $('toast');
+        const fileInput = $('fileInput');
+
+        const copyOriginalBtn = $('copyOriginalBtn');
+        const copyEncryptedBtn = $('copyEncryptedBtn');
+        const copyCipherInputBtn = $('copyCipherInputBtn');
+        const copyDecryptedBtn = $('copyDecryptedBtn');
+
+        const settingsOverlay = $('settingsOverlay');
+        const settingsGear = $('settingsGear');
+        const closeSettings = $('closeSettings');
+
+        const forYouBtn = $('forYouBtn');
+        const forYouOverlay = $('forYouOverlay');
+        const forYouWord = $('forYouWord');
+        const forYouClose = $('forYouClose');
+
+        // =============================================================
+        //  4.  TRANSLATION
+        // =============================================================
+
+        const LANG = {
+            en: {
+                appTitle: '⬡ ARCKER ⬡ AZCKER',
+                appSub: '+G-`Z-D4-C3-E5- B2-F6-\\P-D4-?J- :U-@A-\\P-.X- %D-D4- C3-#B-D4-?J-؟',
+                badge1: '◈ Persian / English',
+                badge2: '◈ Terminal UI',
+                badge3: '◈ Offline',
+                encryptTitle: '⧩ Encrypt',
+                encryptBadge: '→ ARCKER',
+                encryptInputLabel: 'Input (Persian / English)',
+                encryptOutputLabel: 'Output (Encrypted ARCKER codes)',
+                encryptBtn: 'Encrypt',
+                decryptTitle: '⧩ Decrypt',
+                decryptBadge: '← Original',
+                decryptInputLabel: 'Input (ARCKER encrypted codes)',
+                decryptOutputLabel: 'Output (Original readable text)',
+                decryptBtn: 'Decrypt',
+                statChars: 'Chars',
+                statWords: 'Words',
+                statLines: 'Lines',
+                toolPaste: 'Paste',
+                toolClear: 'Clear All',
+                toolSwap: 'Swap',
+                toolDownloadEnc: 'Download TXT',
+                toolDownloadDec: 'Download Decrypt',
+                toolUpload: 'Upload TXT',
+                toolForYou: 'FOR YOU',
+                footerText: '◈ ARCKER   •',
+                settingsTitle: 'Settings',
+                langLabel: 'Language',
+                themeLabel: 'Theme',
+                themeCyber: 'خوش رنگ',
+                sizeLabel: 'Text Size',
+                settingsFooter: '⚙️ Preferences saved locally',
+                encryptPlaceholder: 'Enter Persian or English text...',
+                decryptPlaceholder: 'Enter ARCKER encrypted codes...',
+                encryptOutputPlaceholder: 'Encrypted codes appear here...',
+                decryptOutputPlaceholder: 'Decrypted text appears here...',
+                copyOriginal: 'Copy',
+                copyEncrypted: 'Copy',
+                copyCipherInput: 'Copy',
+                copyDecrypted: 'Copy',
+                copyOriginalTitle: 'Copy original text',
+                copyEncryptedTitle: 'Copy encrypted text',
+                copyCipherInputTitle: 'Copy cipher text',
+                copyDecryptedTitle: 'Copy decrypted text',
+                num1: '12',
+                num2: '21',
+            },
+            fa: {
+                appTitle: '⬡ آرکر',
+                appSub: '+G-`Z-D4-C3-E5- B2-F6-\\P-D4-?J- :U-@A-\\P-.X- %D-D4- C3-#B-D4-?J-؟',
+                badge1: '◈ فارسی / انگلیسی',
+                badge2: '◈ رابط ترمینال',
+                badge3: '◈ آفلاین',
+                encryptTitle: '⧩ رمزگذاری',
+                encryptBadge: '→ آرکر',
+                encryptInputLabel: 'ورودی (فارسی / انگلیسی)',
+                encryptOutputLabel: 'خروجی (کدهای رمزگذاری شده آرکر)',
+                encryptBtn: 'رمزگذاری',
+                decryptTitle: '⧩ رمزگشایی',
+                decryptBadge: '← اصلی',
+                decryptInputLabel: 'ورودی (کدهای رمزگذاری شده آرکر)',
+                decryptOutputLabel: 'خروجی (متن قابل خواندن اصلی)',
+                decryptBtn: 'رمزگشایی',
+                statChars: 'کاراکترها',
+                statWords: 'کلمات',
+                statLines: 'خطوط',
+                toolPaste: 'چسباندن',
+                toolClear: 'پاک کردن همه',
+                toolSwap: 'جابجایی',
+                toolDownloadEnc: 'دانلود TXT',
+                toolDownloadDec: 'دانلود رمزگشایی',
+                toolUpload: 'آپلود TXT',
+                toolForYou: 'برای تو',
+                footerText: '◈ آرکر سیفر نسخه ۱ •',
+                settingsTitle: 'تنظیمات',
+                langLabel: 'زبان',
+                themeLabel: 'تم',
+                themeCyber: 'خوش رنگ',
+                sizeLabel: 'اندازه متن',
+                settingsFooter: '⚙️ تنظیمات ذخیره شده محلی',
+                encryptPlaceholder: 'متن فارسی یا انگلیسی وارد کنید...',
+                decryptPlaceholder: 'کدهای رمزگذاری شده آرکر را وارد کنید...',
+                encryptOutputPlaceholder: 'کدهای رمزگذاری شده در اینجا ظاهر می‌شوند...',
+                decryptOutputPlaceholder: 'متن رمزگشایی شده در اینجا ظاهر می‌شود...',
+                copyOriginal: 'کپی',
+                copyEncrypted: 'کپی',
+                copyCipherInput: 'کپی',
+                copyDecrypted: 'کپی',
+                copyOriginalTitle: 'کپی متن اصلی',
+                copyEncryptedTitle: 'کپی متن رمزگذاری شده',
+                copyCipherInputTitle: 'کپی متن رمز',
+                copyDecryptedTitle: 'کپی متن رمزگشایی شده',
+                num1: '۱۲',
+                num2: '۲۱',
+            }
+        };
+
+        let currentLang = 'en';
+
+        // =============================================================
+        //  5.  SETTINGS STATE
+        // =============================================================
+
+        const SETTINGS_KEY = 'arcker_settings';
+
+        function getSettings() {
+            try {
+                const raw = localStorage.getItem(SETTINGS_KEY);
+                if (raw) {
+                    const parsed = JSON.parse(raw);
+                    return parsed;
+                }
+            } catch (_) {}
+            return { lang: 'en', theme: 'cyber', textSize: 'medium' };
+        }
+
+        function saveSettings(settings) {
+            try {
+                localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
+            } catch (_) {}
+        }
+
+        let settings = getSettings();
+
+        // =============================================================
+        //  6.  THEME ENGINE – "Cyber" now shows as "خوش رنگ"
+        // =============================================================
+
+        function applyTheme(theme) {
+            document.body.classList.remove(
+                'theme-dark', 'theme-light', 'theme-blue', 'theme-green', 'theme-purple', 'theme-red',
+                'light-theme'
+            );
+            document.body.removeAttribute('data-theme');
+
+            if (theme === 'cyber') {
+                // default – no extra class
+            } else if (theme === 'dark') {
+                document.body.classList.add('theme-dark');
+            } else if (theme === 'light') {
+                document.body.classList.add('theme-light');
+            } else if (theme === 'blue') {
+                document.body.classList.add('theme-blue');
+            } else if (theme === 'green') {
+                document.body.classList.add('theme-green');
+            } else if (theme === 'purple') {
+                document.body.classList.add('theme-purple');
+            } else if (theme === 'red') {
+                document.body.classList.add('theme-red');
+            }
+
+            settings.theme = theme;
+            saveSettings(settings);
+            updateThemeButtons();
+        }
+
+        function updateThemeButtons() {
+            const btns = document.querySelectorAll('#themeOptions .opt-btn');
+            btns.forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.value === settings.theme);
+            });
+        }
+
+        // =============================================================
+        //  7.  TEXT SIZE – FIXED: now properly applies CSS classes
+        // =============================================================
+
+        function applyTextSize(size) {
+            document.body.classList.remove('text-small', 'text-medium', 'text-large', 'text-xlarge');
+            if (size === 'small') document.body.classList.add('text-small');
+            else if (size === 'medium') document.body.classList.add('text-medium');
+            else if (size === 'large') document.body.classList.add('text-large');
+            else if (size === 'xlarge') document.body.classList.add('text-xlarge');
+            settings.textSize = size;
+            saveSettings(settings);
+            updateSizeButtons();
+            // Force re-render of stats and textareas
+            updateAllStats();
+        }
+
+        function updateSizeButtons() {
+            const btns = document.querySelectorAll('#sizeOptions .opt-btn');
+            btns.forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.value === settings.textSize);
+            });
+        }
+
+        // =============================================================
+        //  8.  LANGUAGE
+        // =============================================================
+
+        function applyLanguage(lang) {
+            currentLang = lang;
+            const t = LANG[lang];
+            if (!t) return;
+
+            const htmlEl = document.documentElement;
+            htmlEl.classList.remove('lang-en', 'lang-fa');
+            htmlEl.classList.add('lang-' + lang);
+            htmlEl.dir = lang === 'fa' ? 'rtl' : 'ltr';
+
+            // Title numbers – use Persian numerals in fa mode
+            $('titleNum1').textContent = t.num1 || '12';
+            $('titleNum2').textContent = t.num2 || '21';
+
+            // The word "ARCKER" and "AZCKER" stay in English script
+            // but we keep them as-is since they're brand names
+
+            $('appSub').textContent =
+                '+G-`Z-D4-C3-E5- B2-F6-\\P-D4-?J- :U-@A-\\P-.X- %D-D4- C3-#B-D4-?J-؟';
+            $('badge1').textContent = t.badge1;
+            $('badge2').textContent = t.badge2;
+            $('badge3').textContent = t.badge3;
+
+            $('encryptTitle').textContent = t.encryptTitle;
+            $('encryptBadge').textContent = t.encryptBadge;
+            $('encryptInputLabel').innerHTML = t.encryptInputLabel +
+                ' <span class="input-stats" id="encryptInputStats">' + encryptInput.value.length + ' chars</span>';
+            $('encryptOutputLabel').innerHTML = t.encryptOutputLabel +
+                ' <span class="input-stats" id="encryptOutputStats">' + encryptOutput.value.length + ' chars</span>';
+            $('encryptBtnText').textContent = t.encryptBtn;
+            encryptInput.placeholder = t.encryptPlaceholder;
+            encryptOutput.placeholder = t.encryptOutputPlaceholder;
+
+            $('decryptTitle').textContent = t.decryptTitle;
+            $('decryptBadge').textContent = t.decryptBadge;
+            $('decryptInputLabel').innerHTML = t.decryptInputLabel +
+                ' <span class="input-stats" id="decryptInputStats">' + decryptInput.value.length + ' chars</span>';
+            $('decryptOutputLabel').innerHTML = t.decryptOutputLabel +
+                ' <span class="input-stats" id="decryptOutputStats">' + decryptOutput.value.length + ' chars</span>';
+            $('decryptBtnText').textContent = t.decryptBtn;
+            decryptInput.placeholder = t.decryptPlaceholder;
+            decryptOutput.placeholder = t.decryptOutputPlaceholder;
+
+            $('statChars').textContent = t.statChars;
+            $('statWords').textContent = t.statWords;
+            $('statLines').textContent = t.statLines;
+            $('statChars2').textContent = t.statChars;
+            $('statWords2').textContent = t.statWords;
+            $('statLines2').textContent = t.statLines;
+
+            $('toolPaste').textContent = t.toolPaste;
+            $('toolClear').textContent = t.toolClear;
+            $('toolSwap').textContent = t.toolSwap;
+            $('toolDownloadEnc').textContent = t.toolDownloadEnc;
+            $('toolDownloadDec').textContent = t.toolDownloadDec;
+            $('toolUpload').textContent = t.toolUpload;
+            $('toolForYou').textContent = t.toolForYou;
+
+            $('footerText').textContent = t.footerText;
+
+            $('settingsTitle').textContent = t.settingsTitle;
+            $('langLabel').textContent = t.langLabel;
+            $('themeLabel').textContent = t.themeLabel;
+            $('sizeLabel').textContent = t.sizeLabel;
+            $('settingsFooter').textContent = t.settingsFooter;
+            // Theme "Cyber" label is now always "خوش رنگ" per user request
+            $('themeCyberLabel').textContent = 'خوش رنگ';
+
+            $('langEn').textContent = 'English';
+            $('langFa').textContent = 'فارسی';
+
+            $('copyOriginalLabel').textContent = t.copyOriginal;
+            $('copyEncryptedLabel').textContent = t.copyEncrypted;
+            $('copyCipherInputLabel').textContent = t.copyCipherInput;
+            $('copyDecryptedLabel').textContent = t.copyDecrypted;
+            copyOriginalBtn.title = t.copyOriginalTitle;
+            copyEncryptedBtn.title = t.copyEncryptedTitle;
+            copyCipherInputBtn.title = t.copyCipherInputTitle;
+            copyDecryptedBtn.title = t.copyDecryptedTitle;
+
+            // Theme labels (keep "خوش رنگ" as-is for cyber)
+            const themeLabels = {
+                cyber: 'خوش رنگ',
+                dark: lang === 'fa' ? 'تاریک' : 'Dark',
+                light: lang === 'fa' ? 'روشن' : 'Light',
+                blue: lang === 'fa' ? 'آبی' : 'Blue',
+                green: lang === 'fa' ? 'سبز' : 'Green',
+                purple: lang === 'fa' ? 'بنفش' : 'Purple',
+                red: lang === 'fa' ? 'قرمز' : 'Red'
+            };
+            const themeBtns = document.querySelectorAll('#themeOptions .opt-btn');
+            themeBtns.forEach(btn => {
+                const val = btn.dataset.value;
+                const span = btn.querySelector('span:last-child');
+                if (span && themeLabels[val]) {
+                    span.textContent = themeLabels[val];
+                }
+            });
+
+            const sizeLabels = {
+                small: lang === 'fa' ? 'کوچک' : 'Small',
+                medium: lang === 'fa' ? 'متوسط' : 'Medium',
+                large: lang === 'fa' ? 'بزرگ' : 'Large',
+                xlarge: lang === 'fa' ? 'بزرگ‌تر' : 'Extra Large'
+            };
+            const sizeBtns = document.querySelectorAll('#sizeOptions .opt-btn');
+            sizeBtns.forEach(btn => {
+                const val = btn.dataset.value;
+                const span = btn.querySelector('span');
+                if (span && sizeLabels[val]) {
+                    span.textContent = sizeLabels[val];
+                }
+            });
+
+            settings.lang = lang;
+            saveSettings(settings);
+            updateLangButtons();
+            updateAllStats();
+        }
+
+        function updateLangButtons() {
+            const btns = document.querySelectorAll('#langOptions .opt-btn');
+            btns.forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.value === settings.lang);
+            });
+        }
+
+        // =============================================================
+        //  9.  CORE FUNCTIONS
+        // =============================================================
+
+        function updateStats(text, charsEl, wordsEl, linesEl) {
+            const chars = text.length;
+            const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+            const lines = text ? text.split('\n').length : 0;
+            charsEl.textContent = chars;
+            wordsEl.textContent = words;
+            linesEl.textContent = lines;
+        }
+
+        function updateAllStats() {
+            updateStats(encryptOutput.value, encryptChars, encryptWords, encryptLines);
+            updateStats(decryptOutput.value, decryptChars, decryptWords, decryptLines);
+            const charLabel = currentLang === 'fa' ? 'کاراکتر' : 'chars';
+            encryptInputStats.textContent = encryptInput.value.length + ' ' + charLabel;
+            encryptOutputStats.textContent = encryptOutput.value.length + ' ' + charLabel;
+            decryptInputStats.textContent = decryptInput.value.length + ' ' + charLabel;
+            decryptOutputStats.textContent = decryptOutput.value.length + ' ' + charLabel;
+        }
+
+        function performEncrypt() {
+            const start = performance.now();
+            const plain = encryptInput.value;
+            const result = encrypt(plain);
+            encryptOutput.value = result;
+            const elapsed = (performance.now() - start).toFixed(1);
+            encryptTime.textContent = `${elapsed}ms`;
+            updateStats(result, encryptChars, encryptWords, encryptLines);
+            encryptOutputStats.textContent = result.length + ' ' + (currentLang === 'fa' ? 'کاراکتر' : 'chars');
+            applyTypewriter(encryptOutput);
+            saveState();
+            showToast((currentLang === 'fa' ? '✅ رمزگذاری شد در ' : '✅ Encrypted in ') + elapsed + 'ms');
+        }
+
+        function performDecrypt() {
+            const start = performance.now();
+            const cipher = decryptInput.value;
+            const result = decrypt(cipher);
+            decryptOutput.value = result;
+            const elapsed = (performance.now() - start).toFixed(1);
+            decryptTime.textContent = `${elapsed}ms`;
+            updateStats(result, decryptChars, decryptWords, decryptLines);
+            decryptOutputStats.textContent = result.length + ' ' + (currentLang === 'fa' ? 'کاراکتر' : 'chars');
+            applyTypewriter(decryptOutput);
+            saveState();
+            showToast((currentLang === 'fa' ? '✅ رمزگشایی شد در ' : '✅ Decrypted in ') + elapsed + 'ms');
+        }
+
+        let typewriterTimeout = null;
+
+        function applyTypewriter(textarea) {
+            textarea.classList.add('typing-cursor');
+            clearTimeout(typewriterTimeout);
+            typewriterTimeout = setTimeout(() => {
+                textarea.classList.remove('typing-cursor');
+            }, 800);
+        }
+
+        let toastTimer = null;
+
+        function showToast(msg) {
+            toast.textContent = msg;
+            toast.classList.add('show');
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2800);
+        }
+
+        function copyTextContent(textarea, successMsg) {
+            if (!textarea.value) {
+                showToast(currentLang === 'fa' ? '⚠️ چیزی برای کپی وجود ندارد' : '⚠️ Nothing to copy');
+                return;
+            }
+            navigator.clipboard.writeText(textarea.value).then(() => {
+                showToast(successMsg || '📋 Copied');
+            }).catch(() => {
+                textarea.select();
+                document.execCommand('copy');
+                showToast(successMsg || '📋 Copied');
+            });
+        }
+
+        function pasteTo(textarea) {
+            navigator.clipboard.readText().then((text) => {
+                textarea.value = text;
+                textarea.dispatchEvent(new Event('input'));
+                showToast(currentLang === 'fa' ? '📥 چسبانده شد' : '📥 Pasted');
+                saveState();
+            }).catch(() => {
+                showToast(currentLang === 'fa' ? '⚠️ نمی‌توان کلیپ‌بورد را خواند' : '⚠️ Cannot read clipboard');
+            });
+        }
+
+        function clearAll() {
+            encryptInput.value = '';
+            encryptOutput.value = '';
+            decryptInput.value = '';
+            decryptOutput.value = '';
+            encryptTime.textContent = '';
+            decryptTime.textContent = '';
+            updateStats('', encryptChars, encryptWords, encryptLines);
+            updateStats('', decryptChars, decryptWords, decryptLines);
+            const charLabel = currentLang === 'fa' ? 'کاراکتر' : 'chars';
+            encryptInputStats.textContent = '0 ' + charLabel;
+            encryptOutputStats.textContent = '0 ' + charLabel;
+            decryptInputStats.textContent = '0 ' + charLabel;
+            decryptOutputStats.textContent = '0 ' + charLabel;
+            saveState();
+            showToast(currentLang === 'fa' ? '✕ همه پاک شد' : '✕ All cleared');
+        }
+
+        function swapSections() {
+            const aIn = encryptInput.value;
+            const aOut = encryptOutput.value;
+            const bIn = decryptInput.value;
+            const bOut = decryptOutput.value;
+            encryptInput.value = bIn;
+            encryptOutput.value = bOut;
+            decryptInput.value = aIn;
+            decryptOutput.value = aOut;
+            updateStats(encryptOutput.value, encryptChars, encryptWords, encryptLines);
+            updateStats(decryptOutput.value, decryptChars, decryptWords, decryptLines);
+            const charLabel = currentLang === 'fa' ? 'کاراکتر' : 'chars';
+            encryptInputStats.textContent = encryptInput.value.length + ' ' + charLabel;
+            encryptOutputStats.textContent = encryptOutput.value.length + ' ' + charLabel;
+            decryptInputStats.textContent = decryptInput.value.length + ' ' + charLabel;
+            decryptOutputStats.textContent = decryptOutput.value.length + ' ' + charLabel;
+            saveState();
+            showToast(currentLang === 'fa' ? '⇆ جابجا شد' : '⇆ Swapped');
+        }
+
+        function downloadTxt(textarea, filename) {
+            if (!textarea.value) {
+                showToast(currentLang === 'fa' ? '⚠️ محتوایی برای دانلود وجود ندارد' : '⚠️ No content to download');
+                return;
+            }
+            const blob = new Blob([textarea.value], { type: 'text/plain;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename.endsWith('.txt') ? filename : filename + '.txt';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            showToast(currentLang === 'fa' ? '⬇ دانلود شد' : '⬇ Downloaded');
+        }
+
+        function uploadTxt() {
+            fileInput.click();
+        }
+
+        function handleFileUpload(file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const content = e.target.result;
+                encryptInput.value = content;
+                encryptInput.dispatchEvent(new Event('input'));
+                showToast((currentLang === 'fa' ? '⬆ بارگذاری شد: ' : '⬆ Loaded ') + file.name);
+                saveState();
+            };
+            reader.onerror = () => {
+                showToast(currentLang === 'fa' ? '⚠️ خطا در خواندن فایل' : '⚠️ Failed to read file');
+            };
+            reader.readAsText(file);
+        }
+
+        let dragCounter = 0;
+
+        function setupDragDrop() {
+            document.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                e.dataTransfer.dropEffect = 'copy';
+            });
+            document.addEventListener('dragenter', (e) => {
+                e.preventDefault();
+                dragCounter++;
+                if (dragCounter === 1) {
+                    document.body.classList.add('drag-over');
+                }
+            });
+            document.addEventListener('dragleave', (e) => {
+                e.preventDefault();
+                dragCounter--;
+                if (dragCounter === 0) {
+                    document.body.classList.remove('drag-over');
+                }
+            });
+            document.addEventListener('drop', (e) => {
+                e.preventDefault();
+                dragCounter = 0;
+                document.body.classList.remove('drag-over');
+                const files = e.dataTransfer.files;
+                if (files.length > 0) {
+                    const file = files[0];
+                    if (file.name.toLowerCase().endsWith('.txt')) {
+                        handleFileUpload(file);
+                    } else {
+                        showToast(currentLang === 'fa' ? '⚠️ لطفاً فایل .txt را رها کنید' :
+                            '⚠️ Please drop a .txt file');
+                    }
+                }
+            });
+            [encryptInput, decryptInput].forEach(el => {
+                el.addEventListener('dragover', (e) => e.preventDefault());
+                el.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    const files = e.dataTransfer.files;
+                    if (files.length > 0) {
+                        const file = files[0];
+                        if (file.name.toLowerCase().endsWith('.txt')) {
+                            handleFileUpload(file);
+                        } else {
+                            showToast(currentLang === 'fa' ? '⚠️ لطفاً فایل .txt را رها کنید' :
+                                '⚠️ Please drop a .txt file');
+                        }
+                    }
+                });
+            });
+        }
+
+        const STORAGE_KEY = 'arcker_cipher_state';
+
+        function saveState() {
+            try {
+                const state = {
+                    encryptInput: encryptInput.value,
+                    encryptOutput: encryptOutput.value,
+                    decryptInput: decryptInput.value,
+                    decryptOutput: decryptOutput.value,
+                    timestamp: Date.now()
+                };
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+            } catch (_) {}
+        }
+
+        function restoreState() {
+            try {
+                const raw = localStorage.getItem(STORAGE_KEY);
+                if (!raw) return;
+                const state = JSON.parse(raw);
+                if (state.encryptInput !== undefined) encryptInput.value = state.encryptInput;
+                if (state.encryptOutput !== undefined) encryptOutput.value = state.encryptOutput;
+                if (state.decryptInput !== undefined) decryptInput.value = state.decryptInput;
+                if (state.decryptOutput !== undefined) decryptOutput.value = state.decryptOutput;
+                updateAllStats();
+            } catch (_) {}
+        }
+
+        function setupAutoSave() {
+            [encryptInput, encryptOutput, decryptInput, decryptOutput].forEach(el => {
+                el.addEventListener('input', saveState);
+                el.addEventListener('change', saveState);
+            });
+        }
+
+        function setupShortcuts() {
+            document.addEventListener('keydown', (e) => {
+                if (e.ctrlKey && e.key === 'Enter') {
+                    const active = document.activeElement;
+                    if (active === encryptInput || active === encryptOutput) {
+                        e.preventDefault();
+                        performEncrypt();
+                    } else if (active === decryptInput || active === decryptOutput) {
+                        e.preventDefault();
+                        performDecrypt();
+                    }
+                    return;
+                }
+                if (e.key === 'Escape') {
+                    document.activeElement?.blur();
+                    if (settingsOverlay.classList.contains('active')) {
+                        closeSettingsPanel();
+                    }
+                    if (forYouOverlay.classList.contains('active')) {
+                        closeForYou();
+                    }
+                }
+            });
+        }
+
+        function initMatrixRain() {
+            const canvas = document.getElementById('matrix-canvas');
+            const ctx = canvas.getContext('2d');
+            let cols, drops, charSet;
+
+            function resize() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                cols = Math.floor(canvas.width / 16);
+                charSet = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()_+-=[]{}|;:,.<>?/';
+                drops = [];
+                for (let i = 0; i < cols; i++) {
+                    drops.push(Math.floor(Math.random() * -100));
+                }
+            }
+            resize();
+            window.addEventListener('resize', resize);
+
+            function draw() {
+                ctx.fillStyle = 'rgba(0,0,0,0.04)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.font = '14px monospace';
+                ctx.textAlign = 'center';
+                const isLight = document.body.classList.contains('theme-light');
+                const alpha = isLight ? 0.3 : 0.5;
+                for (let i = 0; i < drops.length; i++) {
+                    const ch = charSet[Math.floor(Math.random() * charSet.length)];
+                    const x = i * 16 + 8;
+                    const y = drops[i] * 16;
+                    const brightness = Math.random() * 0.5 + 0.5;
+                    ctx.fillStyle =
+                        `rgba(${isLight ? '0,102,51' : '124,58,237'}, ${alpha * brightness * 0.6})`;
+                    ctx.fillText(ch, x, y);
+                    if (y > canvas.height && Math.random() > 0.975) {
+                        drops[i] = 0;
+                    }
+                    drops[i]++;
+                }
+                requestAnimationFrame(draw);
+            }
+            draw();
+        }
+
+        // =============================================================
+        //  10.  SETTINGS PANEL
+        // =============================================================
+
+        function openSettingsPanel() {
+            settingsOverlay.classList.add('active');
+            updateLangButtons();
+            updateThemeButtons();
+            updateSizeButtons();
+        }
+
+        function closeSettingsPanel() {
+            settingsOverlay.classList.remove('active');
+        }
+
+        // =============================================================
+        //  11.  FOR YOU – Cinematic word‑by‑word animation
+        // =============================================================
+
+        const FOR_YOU_WORDS = [
+            'تو',
+            'بهترین',
+            'اتفاق',
+            'زندگی',
+            'من',
+            'هستی',
+            'و',
+            'تا',
+            'زمانی',
+            'که',
+            'من',
+            'زنده',
+            'هستم',
+            'نمیتوانم',
+            'تو',
+            'رو',
+            'از',
+            'یاد',
+            'ببرم',
+            'از',
+            'طرف',
+            'ARCKER'
+        ];
+
+        let forYouRunning = false;
+        let forYouTimeout = null;
+        let forYouIndex = 0;
+
+        function closeForYou() {
+            forYouOverlay.classList.remove('active');
+            forYouRunning = false;
+            clearTimeout(forYouTimeout);
+            forYouWord.classList.remove('show', 'hide', 'is-too');
+            forYouWord.textContent = '';
+        }
+
+        function startForYouAnimation() {
+            if (forYouRunning) {
+                closeForYou();
+                setTimeout(() => {
+                    startForYouAnimation();
+                }, 300);
+                return;
+            }
+
+            forYouRunning = true;
+            forYouIndex = 0;
+            forYouWord.textContent = '';
+            forYouWord.classList.remove('show', 'hide', 'is-too');
+
+            forYouOverlay.classList.add('active');
+            showNextWord();
+        }
+
+        function showNextWord() {
+            if (!forYouRunning || forYouIndex >= FOR_YOU_WORDS.length) {
+                clearTimeout(forYouTimeout);
+                forYouTimeout = setTimeout(() => {
+                    closeForYou();
+                }, 2000);
+                return;
+            }
+
+            const word = FOR_YOU_WORDS[forYouIndex];
+            const isToo = (word === 'تو');
+
+            forYouWord.textContent = word;
+
+            if (isToo) {
+                forYouWord.classList.add('is-too');
+            } else {
+                forYouWord.classList.remove('is-too');
+            }
+
+            forYouWord.classList.remove('show', 'hide');
+            void forYouWord.offsetWidth;
+            forYouWord.classList.add('show');
+
+            const displayDuration = isToo ? 1200 : 900;
+
+            clearTimeout(forYouTimeout);
+            forYouTimeout = setTimeout(() => {
+                forYouWord.classList.remove('show');
+                forYouWord.classList.add('hide');
+
+                setTimeout(() => {
+                    forYouIndex++;
+                    forYouWord.classList.remove('hide');
+                    showNextWord();
+                }, 450);
+            }, displayDuration);
+        }
+
+        // =============================================================
+        //  12.  BIND EVENTS
+        // =============================================================
+
+        function bindEvents() {
+            encryptBtn.addEventListener('click', performEncrypt);
+            encryptInput.addEventListener('input', () => {
+                encryptInputStats.textContent = encryptInput.value.length + ' ' + (currentLang === 'fa' ?
+                    'کاراکتر' : 'chars');
+            });
+            decryptBtn.addEventListener('click', performDecrypt);
+            decryptInput.addEventListener('input', () => {
+                decryptInputStats.textContent = decryptInput.value.length + ' ' + (currentLang === 'fa' ?
+                    'کاراکتر' : 'chars');
+            });
+
+            copyOriginalBtn.addEventListener('click', () => {
+                copyTextContent(encryptInput, currentLang === 'fa' ? '📋 متن اصلی کپی شد' : '📋 Original copied');
+            });
+            copyEncryptedBtn.addEventListener('click', () => {
+                copyTextContent(encryptOutput, currentLang === 'fa' ? '📋 متن رمزگذاری شده کپی شد' :
+                    '📋 Encrypted copied');
+            });
+            copyCipherInputBtn.addEventListener('click', () => {
+                copyTextContent(decryptInput, currentLang === 'fa' ? '📋 متن رمز کپی شد' : '📋 Cipher copied');
+            });
+            copyDecryptedBtn.addEventListener('click', () => {
+                copyTextContent(decryptOutput, currentLang === 'fa' ? '📋 متن رمزگشایی شده کپی شد' :
+                    '📋 Decrypted copied');
+            });
+
+            document.querySelector('[data-action="pasteEncrypt"]').addEventListener('click', () => {
+                pasteTo(encryptInput);
+            });
+            document.querySelector('[data-action="clearAll"]').addEventListener('click', clearAll);
+            document.querySelector('[data-action="swap"]').addEventListener('click', swapSections);
+            document.querySelector('[data-action="downloadEncrypt"]').addEventListener('click', () => {
+                downloadTxt(encryptOutput, 'arcker_encrypted.txt');
+            });
+            document.querySelector('[data-action="downloadDecrypt"]').addEventListener('click', () => {
+                downloadTxt(decryptOutput, 'arcker_decrypted.txt');
+            });
+            document.querySelector('[data-action="upload"]').addEventListener('click', uploadTxt);
+            fileInput.addEventListener('change', (e) => {
+                if (e.target.files.length > 0) {
+                    handleFileUpload(e.target.files[0]);
+                }
+                e.target.value = '';
+            });
+
+            settingsGear.addEventListener('click', openSettingsPanel);
+            closeSettings.addEventListener('click', closeSettingsPanel);
+            settingsOverlay.addEventListener('click', (e) => {
+                if (e.target === settingsOverlay) {
+                    closeSettingsPanel();
+                }
+            });
+
+            document.querySelectorAll('#langOptions .opt-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const val = btn.dataset.value;
+                    if (val && val !== settings.lang) {
+                        applyLanguage(val);
+                    }
+                });
+            });
+
+            document.querySelectorAll('#themeOptions .opt-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const val = btn.dataset.value;
+                    if (val && val !== settings.theme) {
+                        applyTheme(val);
+                    }
+                });
+            });
+
+            document.querySelectorAll('#sizeOptions .opt-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const val = btn.dataset.value;
+                    if (val && val !== settings.textSize) {
+                        applyTextSize(val);
+                    }
+                });
+            });
+
+            forYouBtn.addEventListener('click', startForYouAnimation);
+            forYouClose.addEventListener('click', closeForYou);
+            forYouOverlay.addEventListener('click', (e) => {
+                if (e.target === forYouOverlay) {
+                    closeForYou();
+                }
+            });
+        }
+
+        // =============================================================
+        //  13.  CLEAR ON STARTUP
+        // =============================================================
+
+        function clearOnStartup() {
+            encryptInput.value = '';
+            encryptOutput.value = '';
+            decryptInput.value = '';
+            decryptOutput.value = '';
+            encryptTime.textContent = '';
+            decryptTime.textContent = '';
+            const charLabel = currentLang === 'fa' ? 'کاراکتر' : 'chars';
+            encryptInputStats.textContent = '0 ' + charLabel;
+            encryptOutputStats.textContent = '0 ' + charLabel;
+            decryptInputStats.textContent = '0 ' + charLabel;
+            decryptOutputStats.textContent = '0 ' + charLabel;
+            updateStats('', encryptChars, encryptWords, encryptLines);
+            updateStats('', decryptChars, decryptWords, decryptLines);
+            try {
+                localStorage.removeItem(STORAGE_KEY);
+            } catch (_) {}
+        }
+
+        // =============================================================
+        //  14.  INIT
+        // =============================================================
+
+        function init() {
+            const saved = getSettings();
+            settings = saved;
+
+            // Apply language first so numbers get correct numerals
+            applyLanguage(settings.lang || 'en');
+            applyTheme(settings.theme || 'cyber');
+            applyTextSize(settings.textSize || 'medium');
+
+            clearOnStartup();
+
+            setupAutoSave();
+            setupDragDrop();
+            setupShortcuts();
+            bindEvents();
+            initMatrixRain();
+            updateAllStats();
+
+            showToast('◈ ARCKER v1 – خوش رنگ Theme');
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
+
+        window.__arcker = {
+            settings: settings,
+            applyLanguage: applyLanguage,
+            applyTheme: applyTheme,
+            applyTextSize: applyTextSize,
+            startForYou: startForYouAnimation,
+            closeForYou: closeForYou,
+            clearOnStartup: clearOnStartup,
+        };
+
+    })();
+    </script>
+</body>
+
+</html>
