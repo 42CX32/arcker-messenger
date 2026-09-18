@@ -216,8 +216,8 @@ async function startServer() {
   try {
     await initializeDatabase();
     server.listen(PORT, '0.0.0.0', () => {
-      console.log(`🚀 ARCKER Server running on http://localhost:${PORT}`);
-    });
+  console.log(`🚀 ARCKER Server running on port ${PORT}`);
+});
     
     // ---- راه‌اندازی تایمر پاک‌سازی خودکار (هر ۶۰ ثانیه) ----
     setInterval(autoCleanup, 60000);
