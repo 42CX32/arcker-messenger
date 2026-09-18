@@ -215,7 +215,7 @@ io.on('connection', async (socket) => {
 async function startServer() {
   try {
     await initializeDatabase();
-    server.listen(PORT, () => {
+    server.listen(PORT, '0.0.0.0', () => {
       console.log(`🚀 ARCKER Server running on http://localhost:${PORT}`);
     });
     
